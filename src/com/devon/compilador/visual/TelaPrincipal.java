@@ -77,6 +77,7 @@ public class TelaPrincipal {
 
 	private void resetar() {
 		txtEditor.setText("");
+		txtMensagens.setEditable(false);
 		txtMensagens.setText("");
 		lblStatus.setText("");
 
@@ -100,7 +101,7 @@ public class TelaPrincipal {
 					sb.append(texto + "\n");
 				}
 
-				txtEditor.setText(sb.toString());
+				txtEditor.setText(txtEditor.getText() + sb.toString());
 				lblStatus.setText(arquivo.getAbsolutePath());
 			} catch (IOException ex) {
 				System.out.println("Problemas ao acessar o arquivo" + arquivo.getAbsolutePath());
@@ -138,7 +139,9 @@ public class TelaPrincipal {
 			e.printStackTrace();
 		} finally {
 			try {
-				fr.close();
+				if(fr != null) {
+					fr.close();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
